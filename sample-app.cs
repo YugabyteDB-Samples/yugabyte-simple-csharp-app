@@ -15,12 +15,8 @@ namespace Yugabyte_CSharp_Demo
             urlBuilder.Database = "yugabyte";
             urlBuilder.Username = "";
             urlBuilder.Password = "";
-            urlBuilder.SslMode = SslMode.Require;
-            urlBuilder.TrustServerCertificate = true;
-
-            // Doesn't work in this mode:
-            // urlBuilder.SslMode = SslMode.VerifyFull;
-            // urlBuilder.SslCertificate = "/Users/dmagda/Downloads/yb_cloud/root.pem";
+            urlBuilder.SslMode = SslMode.VerifyFull;
+            urlBuilder.RootCertificate = "";
 
             NpgsqlConnection conn = new NpgsqlConnection(urlBuilder.ConnectionString);
 

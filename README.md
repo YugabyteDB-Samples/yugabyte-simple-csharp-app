@@ -29,7 +29,8 @@ Locate and define the following connection parameters in the `sample-app.cs` fil
 * `urlBuilder.Host` - the hostname of your Yugabyte Cloud instance.
 * `urlBuilder.Username` - the username for your instance.
 * `urlBuilder.Password` - the database password.
-* `urlBuilder.SslCertificate` - a full path to your CA root cert (for example, `/Users/dmagda/certificates/root.crt`). 
+* `urlBuilder.SslMode`  - make sure it's set to `SslMode.VerifyFull`.
+* `urlBuilder.RootCertificate` - a full path to your CA root cert (for example, `/Users/dmagda/certificates/root.crt`). 
 
 Note, you can easily find all the settings on the Yugabyte Cloud dashboard:
 
