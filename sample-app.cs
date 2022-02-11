@@ -10,6 +10,7 @@ namespace Yugabyte_CSharp_Demo
             Console.WriteLine(">>>> Connecting to YugabyteDB!");
 
             NpgsqlConnectionStringBuilder urlBuilder = new NpgsqlConnectionStringBuilder();
+
             urlBuilder.Host = "";
             urlBuilder.Port = 5433;
             urlBuilder.Database = "yugabyte";
@@ -18,6 +19,10 @@ namespace Yugabyte_CSharp_Demo
             urlBuilder.SslMode = SslMode.VerifyFull;
             urlBuilder.RootCertificate = "";
 
+            // On every new connection the NpgSQL driver makes extra system table queries to map types, which adds overhead.
+            // To turn off this behavior, set the following option in your connection string.
+            urlBuilder.ServerCompatibilityMode = ServerCompatibilityMode.NoTypeLoading;
+            
             NpgsqlConnection conn = new NpgsqlConnection(urlBuilder.ConnectionString);
 
             conn.Open();
