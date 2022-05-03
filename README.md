@@ -1,17 +1,17 @@
 # Simple C# Application for YugabyteDB
 
 This application connects to your YugabyteDB instance via the 
-[Npgsql](https://docs.yugabyte.com/latest/reference/drivers/ysql-client-drivers/#npgsql) driver for PostgreSQL and performs basic SQL operations. The instructions below are provided for [Yugabyte Cloud](https://cloud.yugabyte.com/) deployments. 
+[Npgsql](https://docs.yugabyte.com/latest/reference/drivers/ysql-client-drivers/#npgsql) driver for PostgreSQL and performs basic SQL operations. The instructions below are provided for [YugabyteDB Managed](https://cloud.yugabyte.com/) deployments. 
 If you use a different type of deployment, then update the `sample-app.cs` file with proper connection parameters.
 
-## Prerequisite
+## Prerequisites
 
 * [.NET 6.0 SDK](https://dotnet.microsoft.com/en-us/download) or later version.
 * Command line tool or your favourite IDE, such as Visual Studio Code.
 
-## Start Yugabyte Cloud Cluster
+## Start YugabyteDB Managed Cluster
 
-* [Start YugabyteDB Cloud](https://docs.yugabyte.com/latest/yugabyte-cloud/cloud-quickstart/qs-add/) instance. You can use
+* [Start YugabyteDB Managed](https://docs.yugabyte.com/latest/yugabyte-cloud/cloud-quickstart/qs-add/) instance. You can use
 the free tier at no cost.
 * Add an IP address of your machine/laptop to the [IP allow list](https://docs.yugabyte.com/latest/yugabyte-cloud/cloud-secure-clusters/add-connections/#manage-ip-allow-lists)
 
@@ -23,16 +23,16 @@ Clone the repository and change dirs into it:
 git clone https://github.com/yugabyte/yugabyte-simple-csharp-app && cd yugabyte-simple-csharp-app
 ```
 
-## Provide Yugabyte Cloud Connection Parameters
+## Provide Cluster Connection Parameters
 
 Locate and define the following connection parameters in the `sample-app.cs` file:
-* `urlBuilder.Host` - the hostname of your Yugabyte Cloud instance.
+* `urlBuilder.Host` - the hostname of your instance.
 * `urlBuilder.Username` - the username for your instance.
 * `urlBuilder.Password` - the database password.
 * `urlBuilder.SslMode`  - make sure it's set to `SslMode.VerifyFull`.
 * `urlBuilder.RootCertificate` - a full path to your CA root cert (for example, `/Users/dmagda/certificates/root.crt`). 
 
-Note, you can easily find all the settings on the Yugabyte Cloud dashboard:
+Note, you can easily find all the settings on the YugabyteDB Managed dashboard:
 
 ![image](resources/cloud_app_settings.png)
 
@@ -60,13 +60,13 @@ name = John, age = 28, country = Canada, balance = 9800
 
 ## Explore Application Logic
 
-Congrats! You've successfully executed a simple C# app that works with Yugabyte Cloud.
+Congrats! You've successfully executed a simple C# app that works with YugabyteDB.
 
 Now, explore the source code of `sample-app.cs`:
-1. `connect` function - establishes a connection with your cloud instance via the libpq driver.
-3. `createDatabase` function - creates a table and populates it with sample data.
-4. `selectAccounts` function - queries the data with SQL `SELECT` statements.
-5. `transferMoneyBetweenAccounts` function - updates records consistently with distributed transactions.
+1. `connect` function - establishes a connection with your cloud instance via the Npgsql driver.
+2. `createDatabase` function - creates a table and populates it with sample data.
+3. `selectAccounts` function - queries the data with SQL `SELECT` statements.
+4. `transferMoneyBetweenAccounts` function - updates records consistently with distributed transactions.
 
 ## Questions or Issues?
 
