@@ -16,10 +16,8 @@ namespace Yugabyte_CSharp_Demo
             urlBuilder.Database = "yugabyte";
             urlBuilder.Username = "yugabyte";
             urlBuilder.Password = "yugabyte";
-
-            // Uncomment and initialize the SSL setting for YugabyteDB Managed and other secured deployments
-            // urlBuilder.SslMode = SslMode.VerifyFull;
-            // urlBuilder.RootCertificate = "";
+            urlBuilder.SslMode = SslMode.Disable;
+            urlBuilder.RootCertificate = "";
 
             // On every new connection the NpgSQL driver makes extra system table queries to map types, which adds overhead.
             // To turn off this behavior, set the following option in your connection string.
