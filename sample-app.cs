@@ -11,13 +11,15 @@ namespace Yugabyte_CSharp_Demo
 
             NpgsqlConnectionStringBuilder urlBuilder = new NpgsqlConnectionStringBuilder();
 
-            urlBuilder.Host = "";
+            urlBuilder.Host = "127.0.0.1";
             urlBuilder.Port = 5433;
             urlBuilder.Database = "yugabyte";
-            urlBuilder.Username = "";
-            urlBuilder.Password = "";
-            urlBuilder.SslMode = SslMode.VerifyFull;
-            urlBuilder.RootCertificate = "";
+            urlBuilder.Username = "yugabyte";
+            urlBuilder.Password = "yugabyte";
+
+            // Uncomment and initialize the SSL setting for YugabyteDB Managed and other secured deployments
+            // urlBuilder.SslMode = SslMode.VerifyFull;
+            // urlBuilder.RootCertificate = "";
 
             // On every new connection the NpgSQL driver makes extra system table queries to map types, which adds overhead.
             // To turn off this behavior, set the following option in your connection string.
@@ -93,7 +95,7 @@ namespace Yugabyte_CSharp_Demo
                 if (ex.SqlState != null && ex.SqlState.Equals("40001")) 
                 {
                     Console.WriteLine("The operation is aborted due to a concurrent transaction that is modifying the same set of rows." +
-                            "Consider adding retry logic for production-grade applications.");
+                            "Consider adding retry logic or using the pessimistic locking.");
                 }
 
                 throw ex;
